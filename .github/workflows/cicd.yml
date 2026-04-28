@@ -64,7 +64,6 @@ jobs:
         with:
           # 빈칸 8: ci Job의 outputs에서 artifact_name 값 참조
           name: ${{ needs.ci.outputs.artifact_name }}
-          path: .
 
       - name: SCP로 EC2에 JAR 전송
         # 빈칸 9: SCP 액션 (소유자/저장소 형식)
@@ -74,7 +73,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
-          source: "app.jar"
+          source: "**/*.jar"
           target: "/home/ubuntu/app"
 
       - name: SSH로 EC2에서 앱 실행
