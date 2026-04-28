@@ -65,6 +65,11 @@ jobs:
           # 빈칸 8: ci Job의 outputs에서 artifact_name 값 참조
           name: ${{ needs.ci.outputs.artifact_name }}
 
+      - name: 파일 위치 강제 확인 (디버깅)
+        run: |
+          pwd
+          find . -name "*.jar"
+
       - name: SCP로 EC2에 JAR 전송
         # 빈칸 9: SCP 액션 (소유자/저장소 형식)
         uses: appleboy/scp-action@v1
@@ -91,4 +96,5 @@ jobs:
             cd /home/ubuntu/app/deploy
             nohup java -jar app.jar > ./output.log 2>&1 &
             sleep 3
-            echo "앱 실행 완료"          
+            echo "앱 실행 완료"
+      
