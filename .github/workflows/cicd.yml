@@ -32,7 +32,7 @@ jobs:
           cache: maven
 
       - name: Maven 빌드
-        run: mvn -B package -DskipTests --file pom.xml
+        run: mvn -B package -DskipTests
 
       - name: JAR 파일명 정리
         run: mv ./target/*.jar ./target/app.jar
