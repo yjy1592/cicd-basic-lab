@@ -53,9 +53,9 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # - name: Docker Buildx 설정
+      - name: Docker Buildx 설정
         # 빈칸 5: Buildx 설정 액션
-        # uses: docker/buildx-action@v3
+        uses: docker/setup-buildx-action@v3
 
       - name: 이미지 빌드 및 Push
         uses: docker/build-push-action@v6
@@ -68,7 +68,7 @@ jobs:
             ${{ steps.tag.outputs.value }}
             ${{ vars.DOCKERHUB_USERNAME }}/cicd-basic-lab:latest
           # 빈칸 7: GitHub Actions 캐시를 Docker 레이어 캐시로 활용
-          cache-from: type=
+          cache-from: type=gha
           cache-to: type=gha,mode=max
 
   cd:
