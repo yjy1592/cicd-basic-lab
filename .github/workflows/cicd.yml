@@ -50,8 +50,8 @@ jobs:
         uses: docker/login-action@v3
         with:
           # 빈칸 4: vars로 username, secrets로 token 참조
-          username: ${{ vars.username }}
-          password: ${{ secrets.token }}
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # - name: Docker Buildx 설정
         # 빈칸 5: Buildx 설정 액션
