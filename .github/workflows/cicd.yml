@@ -53,9 +53,9 @@ jobs:
           username: ${{ vars.username }}
           password: ${{ secrets.token }}
 
-      - name: Docker Buildx 설정
+      # - name: Docker Buildx 설정
         # 빈칸 5: Buildx 설정 액션
-        uses: docker/buildx-action@v3
+        # uses: docker/buildx-action@v3
 
       - name: 이미지 빌드 및 Push
         uses: docker/build-push-action@v6
