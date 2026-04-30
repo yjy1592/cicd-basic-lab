@@ -72,6 +72,7 @@ jobs:
       #    CICD2: {dockerhub_user}/cicd-basic-lab:{run_number}-{sha7}
       #    현재:  {계정ID}.dkr.ecr.../mylab-backend:{run_number}-{sha7}
       - name: Build, tag and push image to ECR
+        working-directory: ./cicd-basic-lab
         id: build-push
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
