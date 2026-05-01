@@ -1,5 +1,3 @@
-// src/main/java/cicd/controller/CiCdController.java
-
 package cicd.controller;
 
 import java.util.Map;
