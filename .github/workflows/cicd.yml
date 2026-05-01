@@ -38,7 +38,7 @@ jobs:
           cache: 'maven'
 
       - name: Build with Maven
-        working-directory: ./cicd-basic-lab
+        working-directory: cicd-basic-lab
         run: mvn clean package -DskipTests -B
 
       - name: Configure AWS credentials (OIDC)
@@ -53,7 +53,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build, tag and push image to ECR
-        working-directory: ./cicd-basic-lab
+        working-directory: cicd-basic-lab
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
@@ -103,7 +103,6 @@ jobs:
       # . / 포함 값은 Job outputs 전달 불가
       # → image-repo-tag (mylab-backend:36-761c224) 만 전달받고
       # → cd Job에서 ECR registry 주소를 직접 조합
-      
       - name: Render new task definition with updated image
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
@@ -118,4 +117,4 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service:  ${{ env.ECS_SERVICE }}
           cluster:  ${{ env.ECS_CLUSTER }}
-          wait-for-service-stability: true
+          wait-for-service-stability: true # NEW TASK가 healthy + OLD TASK가 종료 여부 확인
