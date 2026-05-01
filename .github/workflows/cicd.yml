@@ -103,6 +103,10 @@ jobs:
       # . / 포함 값은 Job outputs 전달 불가
       # → image-repo-tag (mylab-backend:36-761c224) 만 전달받고
       # → cd Job에서 ECR registry 주소를 직접 조합
+      - name: Replace ACCOUNT_ID with secret value
+        run: |
+          sed -i "s/ACCOUNT_ID/${{ secrets.AWS_ACCOUNT_ID }}/g" ${{ env.TASK_DEFINITION }}
+      
       - name: Render new task definition with updated image
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
