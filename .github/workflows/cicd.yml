@@ -67,7 +67,7 @@ jobs:
 
           # working-directory 스텝에서 GITHUB_OUTPUT 직접 쓰면 cd Job 전달 불가
           # GITHUB_ENV로 다음 스텝에 전달
-          echo "IMAGE_TAG=${TAG}" >> $GITHUB_EN
+          echo "IMAGE_TAG=${TAG}" >> $GITHUB_ENV
 
       # working-directory 없이 실행해야 GITHUB_OUTPUT 정상 동작
       - name: Export image outputs
